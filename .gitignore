@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Next.js build
+.next/
+out/
+dist/
+tsconfig.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+.env*.local
+
+# Internal app repository - handled separately
+moreno-advisory-app/
+
+# Private/client data
+*.xlsx
+*.xls
+*.csv
+
+# OS/editor
+.DS_Store
+.vscode/

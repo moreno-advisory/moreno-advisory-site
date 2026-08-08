@@ -1,0 +1,317 @@
+{
+  "locale": "en",
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "industries": "Industries",
+    "insights": "Insights",
+    "contact": "Contact",
+    "getInTouch": "Get in Touch",
+    "viewAllServices": "View all services"
+  },
+  "hero": {
+    "tagline": "Founder-led B2B Advisory",
+    "headline1": "B2B Lead Generation & Strategic Outreach",
+    "headline2": "for Companies Entering New Markets",
+    "headline3": "",
+    "headline4": "",
+    "subtitle": "We help B2B companies identify the right decision-makers, start human conversations, and build qualified opportunities through LinkedIn outreach and business development support.",
+    "cta1": "Start a Conversation",
+    "cta2": "View Services",
+    "scroll": "Scroll",
+    "stats": {
+      "experience": {
+        "main": "7+",
+        "title": "Sales & Business Development",
+        "description": "Practical experience in prospecting, commercial relationships and new market development."
+      },
+      "outbound": {
+        "main": "STRUCTURED OUTBOUND",
+        "title": "A More Predictable Commercial Process",
+        "description": "Built around clear ICPs, human messaging and organized pipeline follow-up."
+      },
+      "focus": {
+        "main": "B2B FOCUS",
+        "title": "Qualified Conversations",
+        "description": "Focused on decision-makers, partnerships and real commercial opportunities."
+      }
+    }
+  },
+  "services": {
+    "sectionLabel": "What We Do",
+    "title": "Three Practical",
+    "titleHighlight": "Growth Pillars",
+    "subtitle": "Focused support for B2B companies that need better prospect research, human LinkedIn outreach, and strategic conversations with the right people.",
+    "exploreAll": "View All Services",
+    "learnMore": "Learn more",
+    "heroLabel": "What We Offer",
+    "heroTitle": "B2B Outreach Services for",
+    "heroTitleHighlight": "Qualified Conversations",
+    "heroSubtitle": "Focused advisory support for prospect research, decision-maker mapping, LinkedIn outreach, and strategic business development.",
+    "notSureLabel": "Ready to Start?",
+    "notSureTitle": "Not Sure Where to Start?",
+    "notSureText": "We can review your market, offer, and target audience to identify where qualified conversations can be created.",
+    "consultationCta": "Schedule a Consultation",
+    "overview": "Overview",
+    "whatDelivers": "What This Service Delivers",
+    "discussNeeds": "Discuss Your Needs",
+    "keyBenefits": "Key Benefits",
+    "ourApproach": "Our Approach",
+    "howWeWork": "How We Work",
+    "processSubtitle": "A simple, organized process designed to keep prospecting clear, human, and commercially focused.",
+    "exploreMore": "Explore More",
+    "relatedServices": "Related Services",
+    "relatedServicesAll": "All Services",
+    "ctaTitle": "Let's Put",
+    "ctaTitleSuffix": "to Work for You",
+    "ctaText": "Connect with us to discuss your market, target accounts, and where qualified conversations may be created.",
+    "ctaButton": "Start a Conversation",
+    "advisoryService": "Advisory Service"
+  },
+  "about": {
+    "heroLabel": "About Moreno Advisory",
+    "heroTitle": "Founder-Led",
+    "heroTitleHighlight": "B2B Advisory",
+    "heroSubtitle": "Moreno Advisory helps companies find the right people, start better conversations, and create real commercial opportunities through strategic B2B prospecting.",
+    "storyLabel": "Our Story",
+    "storyTitle": "Built From Practice,",
+    "storyTitle2": "Focused on Conversations",
+    "story1": "Moreno Advisory was founded by Carlos Eduardo Moreno after more than 7 years working with sales, business development, and B2B prospecting.",
+    "story2": "After supporting companies through Fiverr and direct projects, Moreno Advisory was created to bring a more strategic and professional structure to the same work: helping businesses find the right people, start better conversations, and create real commercial opportunities.",
+    "story3": "We are a founder-led advisory, which means every project is handled with close attention, transparency, and care.",
+    "missionTitle": "Our Mission",
+    "missionText": "To help B2B companies open qualified conversations with the right decision-makers through clear research, human outreach, and practical business development support.",
+    "visionTitle": "Our Vision",
+    "visionText": "To become a trusted founder-led advisory for companies that want practical, human, and organized support opening new commercial conversations.",
+    "valuesLabel": "What We Stand For",
+    "valuesTitle": "Our Core Values",
+    "valuesSubtitle": "These values aren't aspirational statements on a wall — they are the operating principles that govern every engagement and every decision we make.",
+    "methodologyLabel": "How We Work",
+    "methodologyTitle": "Our Methodology",
+    "methodologySubtitle": "A disciplined, proven approach that transforms ambition into measurable growth.",
+    "ctaTitle": "Ready to Work Together?",
+    "ctaText": "Let's explore how Moreno Advisory can become the growth partner your business deserves.",
+    "ctaButton": "Get in Touch",
+    "servicesButton": "Our Services",
+    "ourStoryButton": "Our Story & Mission",
+    "founderBadge": "Founder & CEO",
+    "stanfordProgram": "Sales and business development experience",
+    "michiganProgram": "B2B prospecting practice",
+    "founderLabel": "The Founder & The Vision",
+    "founderTitle": "Who Is Behind Moreno Advisory",
+    "founderSubtitle": "Prospecting, LinkedIn Outreach and Practical Business Development",
+    "founderPara1": "Founded by Carlos Eduardo Moreno, Moreno Advisory brings together more than 7 years of experience in sales, business development, and B2B prospecting.",
+    "founderPara2": "After supporting companies through Fiverr and direct projects, Carlos created Moreno Advisory to offer a clearer, more strategic structure for the same kind of work: finding the right people, organizing outreach, and helping companies start better commercial conversations.",
+    "founderQuote": "The goal is simple: help companies approach the right decision-makers with context, clarity, and a human message.",
+    "founderPara3": "The advisory operates from Mairinque, São Paulo, Brazil, with close founder involvement, practical communication, and an international B2B market perspective.",
+    "founderPillars": [
+      "B2B Prospecting",
+      "LinkedIn Outreach",
+      "Decision-Maker Mapping",
+      "Founder-Led Support"
+    ],
+    "method1Title": "Understand your ICP",
+    "method1Desc": "We review your market, offer, audience, and business goals.",
+    "method2Title": "Build the target list",
+    "method2Desc": "We identify companies and decision-makers that match your criteria.",
+    "method3Title": "Start human conversations",
+    "method3Desc": "We create personalized LinkedIn outreach and follow-up messages.",
+    "method4Title": "Organize the pipeline",
+    "method4Desc": "We track responses, qualify opportunities, and keep the process clear.",
+    "method5Title": "Review and adjust",
+    "method5Desc": "We keep the process organized, transparent, and aligned with what the market is showing."
+  },
+  "industries": {
+    "heroLabel": "Sector Expertise",
+    "heroTitle": "Deep Expertise Across",
+    "heroTitleHighlight": "Key Industries",
+    "heroSubtitle": "We bring sector-specific knowledge to every engagement — understanding your industry's unique challenges, regulatory context, and competitive dynamics.",
+    "challenges": "Key Challenges",
+    "solutions": "Our Solutions",
+    "ctaLabel": "Work With Us",
+    "ctaTitle": "Your Industry, Our Expertise",
+    "ctaText": "Ready to explore how Moreno Advisory can drive growth in your specific sector? Our team is here to listen.",
+    "ctaButton": "Get in Touch"
+  },
+  "contact": {
+    "heroLabel": "Connect With Us",
+    "heroTitle": "Let's Understand",
+    "heroTitleHighlight": "Your Market",
+    "heroSubtitle": "Let's understand your market and see where qualified conversations can be created.",
+    "formTitle": "Send Us a Message",
+    "formSubtitle": "Complete the form below and we'll be in touch shortly.",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "company": "Company",
+    "country": "Country",
+    "service": "Service of Interest",
+    "message": "Message",
+    "messagePlaceholder": "Describe your market, target audience, or prospecting goals...",
+    "selectService": "Select a service...",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "successTitle": "Message Received!",
+    "successText": "Thank you for reaching out to Moreno Advisory. A member of our team will respond within 24 business hours.",
+    "sendAnother": "Send another message",
+    "privacy": "All inquiries are treated with strict confidentiality. We never share your information.",
+    "errorText": "Something went wrong. Please try again or contact us directly.",
+    "businessHours": "Business Hours",
+    "businessHoursValue": "Monday – Friday",
+    "businessHoursTime": "9:00 AM – 6:00 PM EST",
+    "businessHoursNote": "Responses within 24 business hours",
+    "faqTitle": "Common Questions",
+    "faqLabel": "FAQ",
+    "required": "Required",
+    "messageTooShort": "Please add a bit more detail (min. 20 characters)"
+  },
+  "blog": {
+    "heroLabel": "Strategic Insights",
+    "heroTitle": "Intelligence for",
+    "heroTitleHighlight": "Global Leaders",
+    "heroSubtitle": "Expert perspectives on business development, partnerships, and international expansion.",
+    "all": "All",
+    "readMore": "Read",
+    "minRead": "min read",
+    "comingSoon": "Coming Soon",
+    "inProgress": "This Article is in Progress",
+    "subscribeText": "Our team is crafting expert insights. Subscribe below to get notified when it's published.",
+    "notifyMe": "Notify Me",
+    "backToInsights": "Back to Insights",
+    "shareArticle": "Share this article"
+  },
+  "stats": {
+    "label": "Current Focus",
+    "title": "Built for Practical B2B Growth"
+  },
+  "aboutPreview": {
+    "label": "About Moreno Advisory",
+    "title": "Founder-Led Advisory for",
+    "titleHighlight": "Qualified Conversations",
+    "text1": "Moreno Advisory was founded by Carlos Eduardo Moreno after more than 7 years working with sales, business development, and B2B prospecting.",
+    "text2": "After supporting companies through Fiverr and direct projects, Moreno Advisory was created to bring a more strategic and professional structure to helping businesses find the right people and start better conversations.",
+    "differentiators": [
+      "Founder-led attention on every project",
+      "Prospect research based on your ICP and market",
+      "Human LinkedIn outreach instead of generic messages",
+      "Clear organization of responses and opportunities",
+      "Practical support for B2B market expansion"
+    ],
+    "cta": "Our Story & Mission",
+    "valuesLabel": "Our Core Values",
+    "experienceValue": "7+",
+    "experienceLabel": "Years in sales and BD"
+  },
+  "worldPresence": {
+    "label": "International Perspective",
+    "title": "International B2B Perspective",
+    "subtitle": "Moreno Advisory is based in Mairinque, São Paulo, Brazil, with a practical B2B perspective for companies exploring new markets.",
+    "primaryMarkets": "Based in Brazil",
+    "perspective": "International B2B"
+  },
+  "trust": {
+    "label": "Trust",
+    "title": "What Clients Value",
+    "subtitle": "Clients usually value clear communication, organized outreach, careful prospect research, and a human approach to starting business conversations.",
+    "items": [
+      "Clear communication before and during outreach",
+      "Organized prospect research and decision-maker mapping",
+      "Human messages written for real business conversations"
+    ]
+  },
+  "newsletter": {
+    "label": "Strategic Insights",
+    "title": "Insights for B2B Growth",
+    "subtitle": "Insights on B2B growth, prospecting, strategic partnerships, and market expansion.",
+    "placeholder": "Enter your business email",
+    "subscribe": "Subscribe",
+    "subscribing": "Subscribing...",
+    "successText": "You're subscribed. Welcome aboard.",
+    "errorText": "Something went wrong. Please try again.",
+    "disclaimer": "No spam. Unsubscribe at any time. Your privacy is protected."
+  },
+  "footer": {
+    "ctaLabel": "Ready to Grow?",
+    "ctaTitle": "Let's Open Better",
+    "ctaTitleHighlight": "B2B Conversations",
+    "ctaText": "Connect with Moreno Advisory to discuss your market, target accounts, and prospecting goals.",
+    "ctaButton": "Start a Conversation",
+    "servicesButton": "Our Services",
+    "servicesTitle": "Services",
+    "companyTitle": "Company",
+    "newsletterTitle": "Newsletter",
+    "newsletterText": "Receive insights on B2B growth, prospecting, partnerships, and market expansion.",
+    "newsletterButton": "Subscribe",
+    "newsletterDisclaimer": "No spam. Unsubscribe at any time.",
+    "copyright": "All rights reserved.",
+    "company": [
+      { "label": "About Us", "href": "/about" },
+      { "label": "Our Services", "href": "/services" },
+      { "label": "Industries", "href": "/industries" },
+      { "label": "Insights", "href": "/blog" },
+      { "label": "Contact", "href": "/contact" }
+    ],
+    "legal": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Policy"
+    },
+    "tagline": "Founder-led B2B Advisory"
+  },
+  "howWeWork": {
+    "label": "How We Work",
+    "title": "A Simple Process for",
+    "titleHighlight": "Qualified Outreach",
+    "items": [
+      {
+        "title": "Understand your ICP",
+        "description": "We review your market, offer, audience, and business goals."
+      },
+      {
+        "title": "Build the target list",
+        "description": "We identify companies and decision-makers that match your criteria."
+      },
+      {
+        "title": "Start human conversations",
+        "description": "We create personalized LinkedIn outreach and follow-up messages."
+      },
+      {
+        "title": "Organize the pipeline",
+        "description": "We track responses, qualify opportunities, and keep the process clear."
+      }
+    ]
+  },
+  "whoWeHelp": {
+    "label": "Who We Help",
+    "title": "Built for B2B Teams That Need",
+    "titleHighlight": "Better Conversations",
+    "items": [
+      "B2B service providers",
+      "SaaS companies",
+      "Marketing and consulting agencies",
+      "Founders entering new markets",
+      "Companies looking for strategic partners",
+      "Businesses that need qualified conversations, not random contact lists"
+    ]
+  },
+  "languageSwitcher": {
+    "en": "EN",
+    "pt": "PT",
+    "switchTo": "Switch language"
+  },
+  "common": {
+    "readyToStart": "Ready to Start?",
+    "getInTouch": "Get in Touch",
+    "learnMore": "Learn More",
+    "exploreServices": "Explore Services",
+    "viewAll": "View All",
+    "backToHome": "Back to Home",
+    "loading": "Loading...",
+    "error404Title": "Page Not Found",
+    "error404Text": "The page you're looking for doesn't exist.",
+    "directContact": "Direct Contact",
+    "advisoryService": "Advisory Service"
+  }
+}

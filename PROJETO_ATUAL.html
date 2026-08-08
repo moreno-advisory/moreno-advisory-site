@@ -1,0 +1,583 @@
+=== ESTRUTURA DE PASTAS ===
+.
+├── assets
+│   ├── ChatGPT Image 26 de jun. de 2026, 10_42_14.png
+│   ├── ChatGPT Image 26 de jun. de 2026, 10_51_49.png
+│   └── perfil.png
+├── DEPLOY.md
+├── deploy.sh
+├── Dockerfile
+├── moreno-advisory-app
+│   ├── AGENTS.md
+│   ├── app
+│   │   ├── api
+│   │   │   ├── auth
+│   │   │   │   └── [...nextauth]
+│   │   │   │       └── route.ts
+│   │   │   ├── calendar
+│   │   │   │   ├── create
+│   │   │   │   │   └── route.ts
+│   │   │   │   ├── delete
+│   │   │   │   │   └── route.ts
+│   │   │   │   └── events
+│   │   │   │       └── route.ts
+│   │   │   └── chat
+│   │   │       └── route.ts
+│   │   ├── appear-ai
+│   │   │   └── page.tsx
+│   │   ├── calculator
+│   │   │   └── page.tsx
+│   │   ├── calendar
+│   │   │   └── page.tsx
+│   │   ├── dashboard
+│   │   │   └── page.tsx
+│   │   ├── favicon.ico
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   ├── liberation-stars
+│   │   │   └── page.tsx
+│   │   ├── octawrite
+│   │   │   └── page.tsx
+│   │   ├── orders
+│   │   │   └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── projects
+│   │   │   ├── [id]
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── report
+│   │   │   │       └── page.tsx
+│   │   │   └── page.tsx
+│   │   └── templates
+│   │       └── page.tsx
+│   ├── assets
+│   │   └── ChatGPT Image 26 de jun. de 2026, 10_42_14.png
+│   ├── auth.ts
+│   ├── CLAUDE.md
+│   ├── components
+│   │   ├── AIAssistant.tsx
+│   │   ├── appear-ai
+│   │   │   ├── LeadModal.tsx
+│   │   │   └── types.ts
+│   │   ├── calendar
+│   │   │   ├── EventModal.tsx
+│   │   │   ├── types.ts
+│   │   │   └── WeeklyView.tsx
+│   │   ├── ComingSoon.tsx
+│   │   ├── dashboard
+│   │   │   ├── AlertsPanel.tsx
+│   │   │   ├── ClockHeader.tsx
+│   │   │   ├── OutreachCounters.tsx
+│   │   │   ├── ProjectCards.tsx
+│   │   │   ├── WhatToDoNow.tsx
+│   │   │   └── WorldClocks.tsx
+│   │   ├── liberation-stars
+│   │   │   ├── BookingModal.tsx
+│   │   │   ├── ContactModal.tsx
+│   │   │   ├── SprintProgress.tsx
+│   │   │   └── types.ts
+│   │   ├── MobileNav.tsx
+│   │   ├── octawrite
+│   │   │   ├── ProspectModal.tsx
+│   │   │   └── types.ts
+│   │   ├── PricingCalculator.tsx
+│   │   ├── projects
+│   │   │   └── ProjectFormModal.tsx
+│   │   ├── SessionProvider.tsx
+│   │   └── Sidebar.tsx
+│   ├── eslint.config.mjs
+│   ├── lib
+│   │   ├── constants.ts
+│   │   ├── projectStorage.ts
+│   │   ├── qualityScore.ts
+│   │   ├── supabase
+│   │   │   ├── client.ts
+│   │   │   └── server.ts
+│   │   ├── types.ts
+│   │   ├── useLocalStorage.ts
+│   │   └── utils.ts
+│   ├── MORENO_ADVISORY_CLAUDE_CODE_PROMPT.md
+│   ├── next.config.ts
+│   ├── next-env.d.ts
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── postcss.config.mjs
+│   ├── public
+│   │   ├── file.svg
+│   │   ├── globe.svg
+│   │   ├── logo.png
+│   │   ├── next.svg
+│   │   ├── vercel.svg
+│   │   └── window.svg
+│   ├── README.md
+│   ├── supabase
+│   │   └── schema.sql
+│   └── tsconfig.json
+├── next.config.ts
+├── next-env.d.ts
+├── package.json
+├── package-lock.json
+├── postcss.config.mjs
+├── PROJETO_ATUAL.txt
+├── public
+│   ├── assets
+│   │   ├── logo-main.png
+│   │   ├── logo-variations.png
+│   │   └── perfil.png
+│   └── robots.txt
+├── README.md
+├── src
+│   ├── app
+│   │   ├── about
+│   │   │   ├── AboutContent.tsx
+│   │   │   └── page.tsx
+│   │   ├── api
+│   │   │   ├── contact
+│   │   │   │   └── route.ts
+│   │   │   └── newsletter
+│   │   │       └── route.ts
+│   │   ├── blog
+│   │   │   ├── BlogPageContent.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]
+│   │   │       ├── BlogPostContent.tsx
+│   │   │       └── page.tsx
+│   │   ├── contact
+│   │   │   ├── ContactPageContent.tsx
+│   │   │   └── page.tsx
+│   │   ├── globals.css
+│   │   ├── industries
+│   │   │   ├── IndustriesContent.tsx
+│   │   │   └── page.tsx
+│   │   ├── layout.tsx
+│   │   ├── [locale]
+│   │   │   ├── about
+│   │   │   │   └── page.tsx
+│   │   │   ├── blog
+│   │   │   │   ├── page.tsx
+│   │   │   │   └── [slug]
+│   │   │   │       └── page.tsx
+│   │   │   ├── contact
+│   │   │   │   └── page.tsx
+│   │   │   ├── industries
+│   │   │   │   └── page.tsx
+│   │   │   ├── layout.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── services
+│   │   │       ├── business-consulting
+│   │   │       │   └── page.tsx
+│   │   │       ├── business-development
+│   │   │       │   └── page.tsx
+│   │   │       ├── commercial-intelligence
+│   │   │       │   └── page.tsx
+│   │   │       ├── executive-business-partnership
+│   │   │       │   └── page.tsx
+│   │   │       ├── global-lead-generation
+│   │   │       │   └── page.tsx
+│   │   │       ├── international-expansion
+│   │   │       │   └── page.tsx
+│   │   │       ├── international-representation
+│   │   │       │   └── page.tsx
+│   │   │       ├── page.tsx
+│   │   │       └── strategic-partnerships
+│   │   │           └── page.tsx
+│   │   ├── page.tsx
+│   │   ├── robots.ts
+│   │   ├── services
+│   │   │   ├── business-consulting
+│   │   │   │   └── page.tsx
+│   │   │   ├── business-development
+│   │   │   │   └── page.tsx
+│   │   │   ├── commercial-intelligence
+│   │   │   │   └── page.tsx
+│   │   │   ├── executive-business-partnership
+│   │   │   │   └── page.tsx
+│   │   │   ├── global-lead-generation
+│   │   │   │   └── page.tsx
+│   │   │   ├── international-expansion
+│   │   │   │   └── page.tsx
+│   │   │   ├── international-representation
+│   │   │   │   └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   ├── ServicesPageContent.tsx
+│   │   │   └── strategic-partnerships
+│   │   │       └── page.tsx
+│   │   └── sitemap.ts
+│   ├── components
+│   │   ├── layout
+│   │   │   ├── Footer.tsx
+│   │   │   └── Header.tsx
+│   │   ├── sections
+│   │   │   ├── AboutPreview.tsx
+│   │   │   ├── ContactSection.tsx
+│   │   │   ├── Hero.tsx
+│   │   │   ├── IndustriesPreview.tsx
+│   │   │   ├── Newsletter.tsx
+│   │   │   ├── ServiceDetail.tsx
+│   │   │   ├── ServicesOverview.tsx
+│   │   │   ├── Stats.tsx
+│   │   │   ├── Testimonials.tsx
+│   │   │   └── WorldPresence.tsx
+│   │   └── ui
+│   │       ├── AnimatedCounter.tsx
+│   │       ├── LanguageSwitcher.tsx
+│   │       ├── Logo.tsx
+│   │       ├── ScrollToTop.tsx
+│   │       └── WhatsAppButton.tsx
+│   ├── i18n
+│   │   ├── messages
+│   │   │   ├── en.json
+│   │   │   └── pt.json
+│   │   ├── request.ts
+│   │   └── routing.ts
+│   ├── lib
+│   │   ├── constants.pt.ts
+│   │   ├── constants.ts
+│   │   ├── getLocaleData.ts
+│   │   ├── metadata.ts
+│   │   ├── rss.ts
+│   │   └── utils.ts
+│   ├── middleware.ts
+│   └── types
+│       └── index.ts
+├── tailwind.config.ts
+└── tsconfig.json
+
+79 directories, 163 files
+
+
+=== CONTEÚDO DOS READMES ===
+
+--- Arquivo: ./README.md ---
+
+# Moreno Advisory — Website Institucional
+
+> **Building Strategic Partnerships. Driving Global Growth.**
+
+Site institucional completo da **Moreno Advisory** — consultoria estratégica global. Desenvolvido com Next.js 15, totalmente bilíngue (PT-BR / EN-US), implantado no Google Cloud Run.
+
+🌐 **Site ao vivo:** [morenoadvisory.com](https://morenoadvisory.com)
+
+---
+
+## Stack Tecnológica
+
+| Camada | Tecnologia |
+|---|---|
+| Framework | Next.js 15.5 (App Router) |
+| Linguagem | TypeScript 5 |
+| Estilo | Tailwind CSS 3 |
+| Animações | Framer Motion |
+| i18n | next-intl (EN + PT-BR) |
+| Formulários | react-hook-form + zod |
+| Ícones | Lucide React |
+| Fontes | Cormorant Garamond + Inter |
+| E-mail | Nodemailer (SMTP) |
+| Hospedagem | Google Cloud Run |
+| Imagens | Google Container Registry |
+| Secrets | Google Secret Manager |
+
+---
+
+## Estrutura do Projeto
+
+```
+moreno-advisory/
+├── src/
+│   ├── app/
+│   │   ├── [locale]/              ← Páginas localizadas (EN + PT)
+│   │   │   ├── layout.tsx         ← Layout com i18n provider
+│   │   │   ├── page.tsx           ← Home
+│   │   │   ├── about/             ← Sobre
+│   │   │   ├── services/          ← Serviços (index + 8 páginas)
+│   │   │   ├── industries/        ← Setores
+│   │   │   ├── contact/           ← Contato
+│   │   │   └── blog/              ← Insights (editorial + RSS)
+│   │   ├── api/
+│   │   │   ├── contact/route.ts   ← Formulário de contato
+│   │   │   └── newsletter/route.ts← Newsletter
+│   │   ├── sitemap.ts             ← Sitemap dinâmico
+│   │   └── robots.ts              ← Robots.txt
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Header.tsx         ← Nav responsiva + language switcher
+│   │   │   └── Footer.tsx         ← Footer completo
+│   │   ├── sections/
+│   │   │   ├── Hero.tsx           ← Hero animado
+│   │   │   ├── ServicesOverview.tsx
+│   │   │   ├── Stats.tsx          ← Contadores animados
+│   │   │   ├── AboutPreview.tsx
+│   │   │   ├── IndustriesPreview.tsx
+│   │   │   ├── WorldPresence.tsx  ← Mapa SVG global
+│   │   │   ├── Testimonials.tsx   ← Carrossel
+│   │   │   ├── ContactSection.tsx ← Formulário
+│   │   │   ├── Newsletter.tsx
+│   │   │   └── ServiceDetail.tsx  ← Template de serviço
+│   │   └── ui/
+│   │       ├── Logo.tsx
+│   │       ├── WhatsAppButton.tsx ← Botão flutuante
+│   │       ├── ScrollToTop.tsx
+│   │       ├── AnimatedCounter.tsx
+│   │       └── LanguageSwitcher.tsx
+│   ├── i18n/
+│   │   ├── routing.ts             ← Configuração de locales
+│   │   ├── request.ts             ← next-intl server config
+│   │   └── messages/
+│   │       ├── en.json            ← Tradução inglês
+│   │       └── pt.json            ← Tradução português
+│   ├── lib/
+│   │   ├── constants.ts           ← Dados em inglês (serviços, indústrias)
+│   │   ├── constants.pt.ts        ← Dados em português
+│   │   ├── getLocaleData.ts       ← Utilitário de dados por locale
+│   │   ├── metadata.ts            ← SEO helpers
+│   │   ├── rss.ts                 ← Feed de notícias (RSS gratuito)
+│   │   └── utils.ts               ← Helpers gerais
+│   ├── types/index.ts             ← Interfaces TypeScript
+│   └── middleware.ts              ← Roteamento i18n
+├── public/
+│   └── assets/
+│       ├── logo-main.png          ← Logo principal
+│       └── perfil.png             ← Foto Carlos Eduardo Moreno
+├── Dockerfile                     ← Build de produção (multi-stage)
+├── deploy.sh                      ← Script de deploy GCP
+├── .env.example                   ← Template de variáveis
+├── next.config.ts
+├── tailwind.config.ts
+└── DEPLOY.md                      ← Documentação de deploy
+```
+
+---
+
+## Páginas
+
+| Rota | Descrição |
+|---|---|
+| `/en` e `/pt` | Home com Hero, Serviços, Stats, About, Setores, Mapa, Depoimentos |
+| `/en/about` `/pt/about` | Sobre + Fundador Carlos Eduardo Moreno + Metodologia |
+| `/en/services` `/pt/services` | Índice dos 8 serviços |
+| `/en/services/[slug]` `/pt/services/[slug]` | Página individual de serviço |
+| `/en/industries` `/pt/industries` | 9 setores atendidos |
+| `/en/contact` `/pt/contact` | Formulário + Mapa + FAQ |
+| `/en/blog` `/pt/blog` | Insights editoriais + Feed RSS ao vivo |
+| `/sitemap.xml` | Sitemap dinâmico |
+| `/robots.txt` | Robots.txt |
+
+### 8 Serviços
+1. Business Development / Desenvolvimento de Negócios
+2. Executive Business Partnership / Parceria Executiva
+3. Strategic Partnerships / Parcerias Estratégicas
+4. Global Lead Generation / Geração Global de Leads
+5. International Expansion / Expansão Internacional
+6. Business Consulting / Consultoria Empresarial
+7. Commercial Intelligence / Inteligência Comercial
+8. International Business Representation / Representação Comercial Internacional
+
+---
+
+## Desenvolvimento Local
+
+```bash
+# 1. Instalar dependências
+npm install
+
+# 2. Configurar variáveis de ambiente
+cp .env.example .env.local
+# Edite .env.local com seus dados
+
+# 3. Iniciar servidor de desenvolvimento
+npm run dev
+# Acesse http://localhost:3000 → redireciona para /en
+```
+
+### Variáveis de Ambiente
+
+```env
+# .env.local
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_SECURE=false
+SMTP_USER=cemoreno@morenoadvisory.com
+SMTP_PASS=sua-senha-app-gmail
+CONTACT_EMAIL=cemoreno@morenoadvisory.com
+
+NEXT_PUBLIC_SITE_URL=https://morenoadvisory.com
+NEXT_PUBLIC_WHATSAPP_NUMBER=5511910685040
+```
+
+### Scripts disponíveis
+
+```bash
+npm run dev          # Servidor de desenvolvimento
+npm run build        # Build de produção
+npm run start        # Servidor de produção local
+npm run lint         # ESLint
+npm run type-check   # Verificação TypeScript
+```
+
+---
+
+## Deploy — Google Cloud Run
+
+### Pré-requisitos
+- Docker instalado e rodando
+- gcloud CLI autenticado: `gcloud auth login`
+- Projeto configurado: `gcloud config set project moreno-advisory`
+
+### Deploy completo
+
+```bash
+bash deploy.sh
+```
+
+O script executa automaticamente:
+1. Autenticação no GCR
+2. Build da imagem Docker (multi-stage)
+3. Push para o Container Registry
+4. Deploy no Cloud Run
+5. Exibe a URL do serviço
+
+### Informações do projeto GCP
+
+| Item | Valor |
+|---|---|
+| Project ID | `moreno-advisory` |
+| Project Number | `122521770527` |
+| Region | `us-central1` |
+| Service | `moreno-advisory-web` |
+| Container | `gcr.io/moreno-advisory/moreno-advisory-web` |
+| Billing | `0125B6-4EAB2D-7BABC2` |
+
+### Atualizar o site após mudanças
+
+```bash
+cd /run/media/cemoreno/Nexus/moreno-advisory
+bash deploy.sh
+```
+
+---
+
+## Bilinguismo (i18n)
+
+O site usa `next-intl` com roteamento baseado em URL:
+
+- `/en/...` → Inglês (padrão)
+- `/pt/...` → Português Brasileiro
+
+### Adicionar/editar traduções
+
+```
+src/i18n/messages/en.json   ← Strings de UI em inglês
+src/i18n/messages/pt.json   ← Strings de UI em português
+src/lib/constants.ts        ← Dados de conteúdo em inglês
+src/lib/constants.pt.ts     ← Dados de conteúdo em português
+```
+
+---
+
+## Funcionalidades
+
+| Funcionalidade | Implementação |
+|---|---|
+| Hero animado | Framer Motion + CSS gradiente |
+| Language Switcher | next-intl + botão EN/PT |
+| Formulário de contato | react-hook-form + zod + honeypot |
+| WhatsApp flutuante | Botão animado → wa.me/5511910685040 |
+| Feed RSS ao vivo | 5 fontes PT + 5 fontes EN (cache 30min) |
+| Contadores animados | IntersectionObserver + requestAnimationFrame |
+| Mapa mundial | SVG customizado com pontos animados |
+| Scroll to top | Aparece após 400px de scroll |
+| Dark/Light mode | next-themes (padrão: light) |
+| SEO completo | JSON-LD, Open Graph, hreflang, sitemap |
+| Performance | SSG + ISR, imagens otimizadas, lazy loading |
+
+---
+
+## Configurar E-mail (Formulário de Contato)
+
+Atualmente o formulário captura dados mas não envia e-mail. Para ativar:
+
+### Opção A — Gmail App Password
+1. Ative 2FA em [myaccount.google.com/security](https://myaccount.google.com/security)
+2. Crie App Password em [myaccount.google.com/apppasswords](https://myaccount.google.com/apppasswords)
+3. Atualize o secret no GCP:
+
+```bash
+echo -n "sua-senha-16-chars" | gcloud secrets versions add smtp-pass --data-file=-
+```
+
+4. Faça redeploy: `bash deploy.sh`
+
+### Opção B — Resend.com (recomendado)
+1. Crie conta em [resend.com](https://resend.com) — grátis 3.000 e-mails/mês
+2. Obtenha a API Key
+3. Atualize `src/app/api/contact/route.ts` para usar a API do Resend
+
+---
+
+## Google Analytics
+
+```bash
+# 1. Crie uma propriedade GA4 em analytics.google.com
+# 2. Adicione ao .env.local:
+NEXT_PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
+
+# 3. Adicione o script em src/app/[locale]/layout.tsx
+```
+
+---
+
+## Contato e Informações
+
+| | |
+|---|---|
+| **Empresa** | Moreno Advisory |
+| **Fundador** | Carlos Eduardo Moreno |
+| **E-mail** | cemoreno@morenoadvisory.com |
+| **Telefone** | +55 11 9 1068-5040 |
+| **WhatsApp** | +55 11 9 1068-5040 |
+| **Brasil** | Mairinque, SP |
+| **USA** | Houston, TX |
+| **LinkedIn** | linkedin.com/company/moreno-advisory |
+| **Site** | morenoadvisory.com |
+
+---
+
+*Moreno Advisory — Building Strategic Partnerships. Driving Global Growth.*
+
+--- Arquivo: ./moreno-advisory-app/README.md ---
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

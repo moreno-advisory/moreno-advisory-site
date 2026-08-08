@@ -1,0 +1,260 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 16%;
+    --primary: 222 76% 16%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 65% 32%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
+    --accent: 40 57% 54%;
+    --accent-foreground: 222 47% 16%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 222 65% 32%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 47% 8%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --primary: 222 65% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 222 47% 20%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 16% 65%;
+    --accent: 40 57% 54%;
+    --accent-foreground: 222 47% 8%;
+    --border: 222 47% 18%;
+    --input: 222 47% 18%;
+    --ring: 222 65% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-variant-numeric: lining-nums;
+    font-feature-settings: "rlig" 1, "calt" 1, "lnum" 1, "tnum" 1;
+  }
+
+  ::selection {
+    background-color: rgba(27, 58, 140, 0.2);
+    color: #0d1b40;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+
+  p, li, a, span, button, input, textarea, label {
+    @apply font-sans;
+  }
+
+  img {
+    @apply max-w-full;
+  }
+
+  a {
+    @apply transition-colors duration-200;
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-28 lg:py-32;
+  }
+
+  .section-padding-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Gradient text */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #c9a84c 0%, #f0d080 50%, #c9a84c 100%);
+  }
+
+  .text-gradient-navy {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #0d1b40 0%, #1b3a8c 100%);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .glass-dark {
+    background: rgba(13, 27, 64, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Gold accent line */
+  .gold-line {
+    @apply relative;
+  }
+
+  .gold-line::before {
+    content: "";
+    @apply absolute left-0 top-0 w-12 h-0.5 bg-gold-500;
+  }
+
+  /* Section label */
+  .section-label {
+    @apply text-gold-500 text-sm font-semibold tracking-widest uppercase;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .card-hover:hover {
+    @apply -translate-y-1 shadow-card-hover;
+  }
+
+  /* Button base */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-all duration-300;
+    @apply bg-gold-500 text-navy-950 hover:bg-gold-400 active:bg-gold-600;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-all duration-300;
+    @apply bg-transparent border border-white/30 text-white hover:bg-white/10 active:bg-white/20;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-sm px-8 py-3.5 text-sm font-semibold tracking-wide uppercase transition-all duration-300;
+    @apply bg-transparent border border-navy-900 text-navy-900 hover:bg-navy-900 hover:text-white;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-navy-900 focus-visible:ring-offset-2;
+  }
+
+  /* Hero background */
+  .hero-bg {
+    background: linear-gradient(160deg, #070e2b 0%, #0d1b40 45%, #1b3a8c 100%);
+  }
+
+  /* Decorative lines */
+  .decorative-line {
+    @apply absolute inset-0 overflow-hidden pointer-events-none;
+  }
+
+  /* Animated underline */
+  .animated-underline {
+    @apply relative inline-block;
+  }
+
+  .animated-underline::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gold-500 transition-all duration-300;
+  }
+
+  .animated-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Number counter */
+  .stat-number {
+    @apply font-display text-5xl lg:text-6xl font-bold;
+  }
+
+  .b2b-display {
+    font-family: var(--font-inter), Arial, sans-serif;
+    font-variant-numeric: lining-nums tabular-nums;
+    font-feature-settings: "lnum" 1, "tnum" 1, "case" 1;
+    letter-spacing: 0.02em;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
+  .clip-path-diagonal {
+    clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+  }
+
+  .clip-path-diagonal-rev {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 88%);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid #c9a84c;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}

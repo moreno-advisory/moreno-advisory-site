@@ -1,0 +1,1305 @@
+# Moreno Advisory - Auditoria Atual e Escopo Solicitado para Plataforma Integrada
+
+Data da consolidacao: 2026-08-06
+Projeto local auditado: /run/media/cemoreno/Nexus/moreno-advisory
+
+Objetivo deste documento:
+Registrar em texto o estado atual auditado do projeto Moreno Advisory e acrescentar a nova solicitacao do proprietario: incluir tecnicamente o CRM e o APP interno no projeto, interligando tudo ao site publico, com objetivo de evoluir para um software interno completo para a Moreno Advisory, semelhante em conceito ao HubSpot.
+
+Importante:
+Este documento e apenas um briefing textual para revisao externa. Nenhum arquivo do site, CRM ou app foi alterado durante a auditoria.
+
+
+# 1. Resumo Executivo
+
+O projeto Moreno Advisory possui atualmente um site publico principal na raiz do workspace, construido com Next.js, TypeScript, React, Tailwind CSS e next-intl para versoes em ingles e portugues.
+
+Tambem existem duas aplicacoes paralelas no mesmo workspace:
+
+- crm/
+- moreno-advisory-app/
+
+Segundo o proprietario, o CRM e o APP tecnicamente nao estao funcionando hoje. Mesmo assim, eles devem ser considerados no escopo futuro, pois a intencao e transformar o projeto em uma plataforma integrada:
+
+- Site publico institucional e comercial.
+- App interno da Moreno Advisory.
+- CRM proprio.
+- Area administrativa para atualizar ou alterar conteudo do site.
+- Sistema operacional interno da empresa, com funcionalidades parecidas com HubSpot.
+
+A recomendacao tecnica e nao tratar isso apenas como "repaginacao visual do site". O escopo real e uma evolucao de produto: site publico + CRM + software interno + CMS/admin + integracoes.
+
+
+# 2. Projeto Publico Atual - Stack
+
+Projeto publico principal:
+/run/media/cemoreno/Nexus/moreno-advisory
+
+Stack identificada:
+
+- Framework: Next.js App Router
+- Linguagem principal: TypeScript
+- UI: React
+- Estilo: Tailwind CSS + CSS global
+- Animacoes: Framer Motion
+- Icones: lucide-react
+- i18n: next-intl
+- Idiomas atuais: en e pt
+- Formularios: react-hook-form + zod
+- Email: nodemailer
+- Gerenciador de pacotes: npm
+- Deploy provavel: Docker + Google Cloud Run
+
+Dependencias principais aproximadas no package.json:
+
+- next: ^15.5.19
+- react: ^19.0.0
+- react-dom: ^19.0.0
+- tailwindcss: ^3.4.17
+- next-intl: ^3.26.5
+- framer-motion: ^11.15.0
+- lucide-react: ^0.469.0
+- nodemailer: ^6.9.16
+- typescript: ^5
+- zod: ^3.24.1
+- react-hook-form: ^7.54.2
+
+
+# 3. Estrutura Atual de Pastas
+
+Pastas e arquivos principais do site publico:
+
+- src/app/
+  Rotas do Next.js App Router.
+
+- src/app/[locale]/
+  Rotas reais localizadas em ingles e portugues.
+
+- src/app/api/
+  Rotas de API do site publico, atualmente contato e newsletter.
+
+- src/components/layout/
+  Componentes globais Header e Footer.
+
+- src/components/sections/
+  Secoes reutilizadas do site, como Hero, ServicesOverview, Testimonials, ContactSection etc.
+
+- src/components/ui/
+  Componentes menores de UI: Logo, LanguageSwitcher, WhatsAppButton, ScrollToTop e AnimatedCounter.
+
+- src/i18n/
+  Configuracao de internacionalizacao e arquivos de mensagens.
+
+- src/i18n/messages/en.json
+  Textos principais em ingles.
+
+- src/i18n/messages/pt.json
+  Textos principais em portugues.
+
+- src/lib/
+  Constantes, metadata, email, RSS, persistencia de leads e utilitarios.
+
+- src/types/
+  Tipos compartilhados.
+
+- public/assets/
+  Imagens principais do site.
+
+- Dockerfile
+  Build multi-stage para producao em Node/Next standalone.
+
+- deploy.sh
+  Script de deploy para Google Cloud Run.
+
+- DEPLOY.md
+  Documentacao de deploy.
+
+- .env.example
+  Variaveis de ambiente esperadas.
+
+- .env.local
+  Existe no projeto, mas nao foi aberta na auditoria para evitar expor credenciais.
+
+Outras aplicacoes no workspace:
+
+- crm/
+  Aplicacao auxiliar/CRM atual, declarada pelo proprietario como nao funcionando tecnicamente.
+
+- moreno-advisory-app/
+  Aplicacao interna maior, tambem declarada pelo proprietario como nao funcionando tecnicamente.
+
+
+# 4. Rotas e Paginas Atuais do Site Publico
+
+Rotas sem idioma:
+
+- /
+  Redireciona para /en.
+
+- /about
+  Redireciona para /en/about.
+
+- /services
+  Redireciona para /en/services.
+
+- /industries
+  Redireciona para /en/industries.
+
+- /blog
+  Redireciona para /en/blog.
+
+- /contact
+  Redireciona para /en/contact.
+
+Rotas reais localizadas:
+
+- /en e /pt
+  Arquivo: src/app/[locale]/page.tsx
+  Objetivo: pagina inicial institucional.
+  Secoes: Hero, ServicesOverview, Stats, AboutPreview, IndustriesPreview, WorldPresence, Testimonials, ContactSection, Newsletter.
+
+- /en/about e /pt/about
+  Arquivo: src/app/[locale]/about/page.tsx
+  Conteudo: src/app/about/AboutContent.tsx
+  Objetivo: apresentar empresa, fundador, historia, missao, visao, valores e metodologia.
+
+- /en/services e /pt/services
+  Arquivo: src/app/[locale]/services/page.tsx
+  Conteudo: src/app/services/ServicesPageContent.tsx
+  Objetivo: listar todos os servicos.
+
+- /en/services/business-development e /pt/services/business-development
+- /en/services/executive-business-partnership e /pt/services/executive-business-partnership
+- /en/services/strategic-partnerships e /pt/services/strategic-partnerships
+- /en/services/global-lead-generation e /pt/services/global-lead-generation
+- /en/services/international-expansion e /pt/services/international-expansion
+- /en/services/business-consulting e /pt/services/business-consulting
+- /en/services/commercial-intelligence e /pt/services/commercial-intelligence
+- /en/services/international-representation e /pt/services/international-representation
+  Objetivo: paginas individuais de servico.
+  Conteudo renderizado por: src/components/sections/ServiceDetail.tsx
+
+- /en/industries e /pt/industries
+  Arquivo: src/app/[locale]/industries/page.tsx
+  Conteudo: src/app/industries/IndustriesContent.tsx
+  Objetivo: listar setores atendidos.
+
+- /en/blog e /pt/blog
+  Arquivo: src/app/[locale]/blog/page.tsx
+  Conteudo: src/app/blog/BlogPageContent.tsx
+  Objetivo: artigos editoriais e feed RSS de inteligencia de mercado.
+
+- /en/blog/[slug] e /pt/blog/[slug]
+  Arquivo: src/app/[locale]/blog/[slug]/page.tsx
+  Conteudo: src/app/blog/[slug]/BlogPostContent.tsx
+  Objetivo: paginas de artigos individuais.
+
+- /en/contact e /pt/contact
+  Arquivo: src/app/[locale]/contact/page.tsx
+  Conteudo: src/app/contact/ContactPageContent.tsx
+  Objetivo: contato, dados da empresa, formulario e FAQ.
+
+APIs:
+
+- /api/contact
+  Arquivo: src/app/api/contact/route.ts
+  Funcao: receber formulario, enviar email, enviar auto-resposta e tentar salvar lead.
+
+- /api/newsletter
+  Arquivo: src/app/api/newsletter/route.ts
+  Funcao: receber inscricao de newsletter, enviar email e tentar salvar lead.
+
+
+# 5. Componentes Principais
+
+- Header
+  Caminho: src/components/layout/Header.tsx
+  Uso: layout global.
+  Funcao: menu desktop/mobile, dropdown de servicos, CTA e language switcher.
+  Observacao: usa traducoes para navegacao, mas lista de servicos vem de SERVICES em ingles.
+
+- Footer
+  Caminho: src/components/layout/Footer.tsx
+  Uso: layout global.
+  Funcao: CTA final, links, servicos, contatos, newsletter e redes sociais.
+  Observacao: tambem usa SERVICES em ingles na lista de servicos.
+
+- Hero
+  Caminho: src/components/sections/Hero.tsx
+  Uso: home.
+  Funcao: abertura principal, headline, CTAs e estatisticas.
+
+- ServicesOverview
+  Caminho: src/components/sections/ServicesOverview.tsx
+  Uso: home.
+  Funcao: resumo dos servicos.
+
+- ServiceDetail
+  Caminho: src/components/sections/ServiceDetail.tsx
+  Uso: paginas individuais de servico.
+  Funcao: descricao, beneficios, processo e CTA por servico.
+
+- AboutPreview
+  Caminho: src/components/sections/AboutPreview.tsx
+  Uso: home.
+  Funcao: previa institucional.
+
+- IndustriesPreview
+  Caminho: src/components/sections/IndustriesPreview.tsx
+  Uso: home.
+  Funcao: previa dos setores atendidos.
+
+- WorldPresence
+  Caminho: src/components/sections/WorldPresence.tsx
+  Uso: home.
+  Funcao: presenca global.
+
+- Testimonials
+  Caminho: src/components/sections/Testimonials.tsx
+  Uso: home.
+  Funcao: depoimentos.
+
+- ContactSection
+  Caminho: src/components/sections/ContactSection.tsx
+  Uso: home.
+  Funcao: CTA/convite para contato.
+
+- Newsletter
+  Caminho: src/components/sections/Newsletter.tsx
+  Uso: home.
+  Funcao: captura de email.
+
+- WhatsAppButton
+  Caminho: src/components/ui/WhatsAppButton.tsx
+  Uso: layout global.
+  Funcao: botao flutuante de WhatsApp.
+
+- Logo
+  Caminho: src/components/ui/Logo.tsx
+  Uso: header, footer e blog.
+  Funcao: renderizar marca visual.
+
+
+# 6. Conteudo Atual do Site
+
+Posicionamento:
+
+- Nome: Moreno Advisory
+- Tagline EN: Global Business Advisory
+- Tagline PT: Consultoria Global de Negocios
+- Slogan: Building Strategic Partnerships. Driving Global Growth.
+
+Descricao institucional:
+Moreno Advisory e uma consultoria estrategica especializada em desenvolvimento de negocios, expansao comercial, crescimento internacional, parcerias estrategicas, geracao de negocios qualificados e inteligencia de mercado.
+
+Hero EN:
+
+- Building Strategic Partnerships.
+- Driving Global Growth.
+- Subtitle: We connect companies to strategic opportunities that drive sustainable growth, international expansion, and continuous value creation across global markets.
+- CTAs: Start a Conversation; Explore Our Services.
+
+Hero PT:
+
+- Construindo Parcerias Estrategicas.
+- Impulsionando o Crescimento Global.
+- Subtitle: Conectamos empresas a oportunidades estrategicas que impulsionam crescimento sustentavel, expansao internacional e criacao continua de valor nos mercados globais.
+- CTAs: Iniciar uma Conversa; Nossos Servicos.
+
+Servicos:
+
+- Business Development / Desenvolvimento de Negocios
+- Executive Business Partnership / Parceria Executiva de Negocios
+- Strategic Partnerships / Parcerias Estrategicas
+- Global Lead Generation / Geracao Global de Leads
+- International Expansion / Expansao Internacional
+- Business Consulting / Consultoria Empresarial
+- Commercial Intelligence / Inteligencia Comercial
+- International Business Representation / Representacao Comercial Internacional
+
+About:
+
+- Foco em consultoria executiva e nao apenas relatorios teoricos.
+- Foco em execucao, responsabilidade, integracao com o cliente e resultados.
+- Rede global em mais de 35 paises.
+- Mais de 200 parcerias estrategicas.
+- Mais de 15 anos de experiencia.
+- Secao do fundador Carlos Eduardo Moreno.
+- Referencias a Stanford University e University of Michigan.
+
+Valores:
+
+- Integrity / Integridade
+- Transparency / Transparencia
+- Excellence / Excelencia
+- Innovation / Inovacao
+- Global Vision / Visao Global
+- Results-Driven / Foco em Resultados
+
+Depoimentos:
+
+- Carlos M., TechVentures Group
+- Sarah L., MedTech Solutions
+- Alexandre F., Fintech Innovations
+
+Contato:
+
+- Formulario com nome, sobrenome, email, telefone, empresa, pais, servico e mensagem.
+- Promessa de resposta em ate 24 horas uteis.
+- Links para email, telefone, WhatsApp e LinkedIn.
+
+Blog:
+
+- Artigos editoriais fixos.
+- Feed RSS com noticias externas de negocios/mercado.
+
+
+# 7. Identidade Visual Atual
+
+Cores principais:
+
+- Navy escuro: #0D1B40
+- Navy quase preto: #070E2B
+- Royal blue: #1B3A8C
+- Azul claro: #2462C2
+- Gold: #C9A84C
+- Gold claro: #DFB96A
+- Gold brilhante: #F0D080
+
+Tipografia:
+
+- Inter para textos gerais.
+- Cormorant Garamond para titulos/display.
+
+Estilo:
+
+- Premium corporativo.
+- Heros escuros com gradiente.
+- Acentos dourados.
+- Cards com bordas leves e hover.
+- Botoes em caixa alta.
+- Header fixo transparente que muda ao rolar.
+- Menu mobile fullscreen.
+
+Assets atuais:
+
+- public/assets/logo-main.png
+- public/assets/logo-variations.png
+- public/assets/perfil.png
+
+
+# 8. Formularios e Integracoes Atuais
+
+Contato:
+
+- UI: src/app/contact/ContactPageContent.tsx
+- API: src/app/api/contact/route.ts
+- Validacao: zod + react-hook-form
+- Envio: fetch para /api/contact
+- Email: nodemailer
+- Auto-resposta: sim
+- Anti-spam: honeypot simples
+- Persistencia opcional: Supabase REST em tabela site_contact_messages
+
+Newsletter:
+
+- API: src/app/api/newsletter/route.ts
+- Email: nodemailer
+- Persistencia opcional: Supabase REST em tabela newsletter_subscribers
+
+WhatsApp:
+
+- Variavel: NEXT_PUBLIC_WHATSAPP_NUMBER
+- Fallback atual: 5511910685040
+
+LinkedIn:
+
+- https://www.linkedin.com/company/moreno-advisory
+
+RSS:
+
+- src/lib/rss.ts
+- Feeds externos EN: BBC, HBR, NYT, FT, WSJ.
+- Feeds externos PT: Exame, InfoMoney, G1 Economia, Valor Economico, Agencia Brasil.
+
+Analytics:
+
+- .env.example menciona NEXT_PUBLIC_GA_MEASUREMENT_ID.
+- Nao foi encontrada implementacao ativa do Google Analytics.
+- Nao foi encontrado Meta Pixel.
+
+Supabase:
+
+- O site publico usa Supabase via REST se SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY existirem.
+- Nao ha dependencia Supabase client no package.json raiz do site publico.
+- A chave service role deve permanecer apenas no servidor.
+
+
+# 9. SEO e Metadata
+
+Arquivos principais:
+
+- src/lib/metadata.ts
+- src/app/[locale]/layout.tsx
+- src/app/sitemap.ts
+- src/app/robots.ts
+- public/robots.txt
+
+Metadata atual:
+
+- Titulo default: Moreno Advisory | Global Business Advisory
+- Template: %s | Moreno Advisory
+- Description: baseada em SITE_CONFIG.description
+- Keywords: business development, strategic partnerships, international expansion etc.
+- Open Graph configurado.
+- Twitter card configurado.
+- JSON-LD ProfessionalService no layout localizado.
+- hreflang para en, pt e x-default.
+- lang do HTML definido pelo locale.
+
+Observacoes:
+
+- Favicon declarado como /favicon.ico, mas nao encontrado em public.
+- Apple icon declarado como /apple-touch-icon.png, mas nao encontrado em public.
+- Manifest declarado como /site.webmanifest, mas nao encontrado em public.
+- OG image declarada como /assets/og-default.jpg, mas nao encontrada em public/assets.
+- sitemap.ts lista rotas sem prefixo de idioma e nao inclui /pt.
+- Existe robots dinamico e robots estatico, o que pode gerar duplicidade/confusao.
+
+
+# 10. Deploy e Hospedagem
+
+Hospedagem provavel:
+
+- Google Cloud Run.
+
+Evidencias:
+
+- Dockerfile configurado para Next.js standalone.
+- Porta de producao: 8080.
+- deploy.sh usando gcloud run deploy.
+- Projeto GCP: moreno-advisory.
+- Servico: moreno-advisory-web.
+- Regiao: us-central1.
+- Imagem: gcr.io/moreno-advisory/moreno-advisory-web.
+- Dominio: https://morenoadvisory.com.
+
+Secrets de SMTP no Google Secret Manager:
+
+- smtp-host
+- smtp-port
+- smtp-secure
+- smtp-user
+- smtp-pass
+
+Variaveis de producao mencionadas:
+
+- NEXT_PUBLIC_SITE_URL
+- NEXT_PUBLIC_WHATSAPP_NUMBER
+- SMTP_FROM_EMAIL
+- CONTACT_EMAIL
+- NEWSLETTER_EMAIL
+
+Nao foram encontrados:
+
+- GitHub Actions
+- vercel.json
+- netlify.toml
+- wrangler.toml
+- Configuracao Cloudflare especifica
+
+
+# 11. Scripts Disponiveis
+
+Scripts do package.json raiz:
+
+- npm run dev
+  Roda o ambiente local com next dev.
+
+- npm run build
+  Gera build de producao com next build.
+
+- npm run start
+  Roda producao com next start.
+
+- npm run lint
+  Executa eslint .
+
+- npm run type-check
+  Executa tsc --noEmit.
+
+Nao ha script de testes automatizados.
+
+
+# 12. Riscos Tecnicos Antes da Repaginacao
+
+Principais riscos:
+
+- O projeto e multilingue. Alterar apenas EN ou PT pode gerar inconsistencia.
+- Header e Footer usam SERVICES em ingles em areas que deveriam respeitar locale.
+- Links legais no footer apontam para /privacy, /terms e /cookies, mas essas paginas nao aparecem implementadas.
+- sitemap nao lista corretamente rotas localizadas /en e /pt.
+- Assets de SEO declarados parecem ausentes.
+- Formularios dependem de SMTP e variaveis de ambiente.
+- Supabase service role key precisa continuar exclusivamente server-side.
+- Blog depende de feeds RSS externos.
+- Ha textos fixos espalhados em componentes alem dos arquivos de i18n.
+- Existem multiplos projetos no workspace; alteracoes no site publico nao devem quebrar crm/ ou moreno-advisory-app/.
+- O CRM e o APP atuais foram declarados pelo proprietario como tecnicamente nao funcionando.
+- Uma repaginacao visual isolada pode aumentar a desconexao entre site, CRM e app interno.
+
+
+# 13. Nova Solicitacao do Proprietario
+
+O proprietario informou:
+
+"O CRM e o APP tecnicamente nao estao funcionando. Entao inclua no projeto, para que tudo esteja interligado. O APP sera onde eu, atraves de uma pagina web, conseguirei trabalhar como software interno da Moreno Advisory, mas caso precise atualizar ou mudar algo no site, eu consiga por ele tambem. Quero o app completo de uma empresa, parecido com o HubSpot. Pode fazer tudo isso na repaginacao?"
+
+Interpretacao tecnica:
+
+O objetivo deixou de ser apenas repaginar o site. O novo objetivo e construir uma plataforma integrada da Moreno Advisory, com:
+
+- Site publico.
+- CRM proprio.
+- App interno operacional.
+- CMS/admin para atualizar o site.
+- Banco de dados central.
+- Autenticacao e permissoes.
+- Integracoes de formularios, leads, contatos, calendario, tarefas e conteudo.
+
+
+# 14. Escopo Futuro Desejado - Plataforma Moreno Advisory
+
+A plataforma desejada deve funcionar como o software interno da Moreno Advisory. O app interno deve ser acessado por pagina web e permitir trabalhar a operacao da empresa.
+
+Modulos desejados:
+
+1. Site publico
+
+- Home institucional.
+- Paginas de servicos.
+- Pagina sobre.
+- Pagina setores.
+- Blog/insights.
+- Contato.
+- Newsletter.
+- SEO.
+- Idiomas PT/EN.
+- Captura de leads.
+
+2. CRM interno
+
+- Leads.
+- Contatos.
+- Empresas.
+- Oportunidades.
+- Pipeline comercial.
+- Estagios do funil.
+- Historico de interacoes.
+- Status dos leads.
+- Origem dos leads.
+- Responsavel pelo lead.
+- Notas internas.
+- Tarefas relacionadas.
+
+3. App interno da empresa
+
+- Dashboard executivo.
+- Agenda/calendario.
+- Tarefas.
+- Projetos.
+- Clientes.
+- Relatorios.
+- Inbox/comunicacoes.
+- Templates.
+- Propostas.
+- Ordens/pedidos, se fizer sentido.
+- Assistente de IA, se fizer sentido.
+
+4. CMS/admin do site
+
+- Editar textos principais do site.
+- Editar hero.
+- Editar servicos.
+- Editar CTAs.
+- Editar setores.
+- Editar blog.
+- Editar depoimentos.
+- Publicar/despublicar conteudos.
+- Previsualizar alteracoes antes de publicar.
+- Controle de versao ou historico de alteracoes, se possivel.
+
+5. Integracoes
+
+- Formulario do site alimentando CRM automaticamente.
+- Newsletter alimentando CRM/lista interna.
+- WhatsApp como canal de contato.
+- Email/SMTP.
+- Supabase/Postgres como banco central sugerido.
+- Google Calendar, Google Workspace ou outras integracoes futuras.
+- Analytics futuramente.
+
+
+# 15. Recomendacao de Arquitetura
+
+Ha duas opcoes principais:
+
+Opcao A - Monorepo com apps separados
+
+- apps/web: site publico.
+- apps/internal: app interno/CRM/CMS.
+- packages/ui: componentes compartilhados.
+- packages/db: schema e acesso ao banco.
+- packages/config: configuracoes compartilhadas.
+
+Vantagens:
+
+- Separacao clara entre site publico e app interno.
+- Melhor controle de seguranca.
+- Escalavel para produto interno grande.
+- Facilita deploy separado.
+
+Desvantagens:
+
+- Exige reorganizacao maior.
+- Mais trabalho inicial.
+
+Opcao B - Um unico Next.js app
+
+- Site publico em rotas /en, /pt etc.
+- App interno em /app, /admin ou /dashboard.
+- APIs no mesmo projeto.
+
+Vantagens:
+
+- Mais simples no inicio.
+- Menos configuracao.
+- Pode reaproveitar layout, autenticacao e banco com rapidez.
+
+Desvantagens:
+
+- Pode ficar grande e acoplado.
+- Requer muito cuidado com autenticacao, permissoes e boundaries entre publico e privado.
+
+Recomendacao inicial:
+
+Para um objetivo parecido com HubSpot, a melhor solucao tecnica tende a ser monorepo ou uma arquitetura modular clara. Porem, se a prioridade for velocidade e MVP, pode-se unificar primeiro em um unico Next.js app bem organizado, desde que as areas publica e privada sejam claramente separadas.
+
+
+# 16. Plano Seguro Sugerido
+
+Fase 0 - Confirmacao de escopo
+
+- Confirmar se o foco inicial e salvar/repaginar o site ou criar a fundacao do app interno.
+- Confirmar quais funcionalidades estilo HubSpot sao essenciais no MVP.
+- Confirmar banco de dados preferido, provavelmente Supabase/Postgres.
+- Confirmar se login sera por email/senha, Google Workspace ou ambos.
+
+Fase 1 - Auditoria tecnica profunda do CRM e APP existentes
+
+- Analisar crm/.
+- Analisar moreno-advisory-app/.
+- Identificar o que ja existe e pode ser reaproveitado.
+- Identificar o que esta quebrado.
+- Separar codigo aproveitavel de codigo descartavel.
+
+Fase 2 - Arquitetura unificada
+
+- Definir estrutura final do projeto.
+- Definir rotas publicas e privadas.
+- Definir banco central.
+- Definir modelo de dados.
+- Definir autenticacao.
+- Definir permissoes.
+
+Fase 3 - Banco de dados e autenticacao
+
+- Criar schema para:
+  - users
+  - organizations
+  - leads
+  - contacts
+  - companies
+  - deals/opportunities
+  - pipeline stages
+  - tasks
+  - notes
+  - interactions
+  - projects
+  - site_content
+  - blog_posts
+  - newsletter_subscribers
+- Implementar login.
+- Proteger rotas internas.
+
+Fase 4 - CRM MVP
+
+- Dashboard.
+- Leads.
+- Contatos.
+- Empresas.
+- Pipeline.
+- Tarefas.
+- Historico de interacoes.
+- Captura automatica a partir do site.
+
+Fase 5 - Site publico repaginado e conectado
+
+- Atualizar copy.
+- Reorganizar secoes.
+- Melhorar visual.
+- Garantir PT/EN.
+- Formulario do site enviando para CRM.
+- Newsletter enviando para CRM.
+- SEO corrigido.
+
+Fase 6 - CMS/admin para controlar o site
+
+- Permitir editar conteudo do site pelo app interno.
+- Permitir publicar/despublicar.
+- Permitir gerenciar blog.
+- Permitir editar CTAs e servicos.
+
+Fase 7 - Funcionalidades avancadas
+
+- Relatorios comerciais.
+- Lead scoring.
+- Automacoes.
+- Templates de email.
+- Geracao de propostas.
+- Calendario.
+- Inbox.
+- Integracao com Google Workspace.
+- IA assistente.
+
+Fase 8 - Testes e deploy
+
+- Testar localmente.
+- Rodar lint.
+- Rodar type-check.
+- Rodar build.
+- Testar rotas publicas.
+- Testar login.
+- Testar formularios.
+- Testar CRM.
+- Testar responsivo.
+- Fazer checklist antes do deploy.
+
+
+# 17. MVP Recomendado
+
+Para comecar de forma realista, recomenda-se um MVP com:
+
+- Site publico mantido e repaginado.
+- Login interno.
+- Dashboard interno.
+- Modulo de leads.
+- Modulo de contatos.
+- Modulo de empresas.
+- Pipeline comercial simples.
+- Tarefas.
+- Formulario do site salvando leads no CRM.
+- Newsletter salvando inscricoes.
+- Area basica para editar textos principais do site.
+- Modulo inicial de usuarios administradores.
+- Banco central em nuvem para que dois ou mais usuarios vejam os mesmos dados.
+- Preparacao para sincronizacao em tempo real.
+
+Funcionalidades como automacao avancada, inbox completo, integracao profunda com email e relatorios sofisticados podem vir depois.
+
+
+# 18. Extensao/Modulo Solicitado - Multiusuarios, Cloud Central e Sincronizacao
+
+Nova solicitacao acrescentada pelo proprietario:
+
+Criar uma extensao de modulo/suplemento para o sistema CRM e APP atual que implemente gerenciamento de multiplos usuarios administradores com base de dados centralizada em nuvem.
+
+O objetivo pratico:
+
+- O proprietario tera seu usuario principal.
+- Um socio ou novo usuario tambem podera entrar.
+- Esse novo usuario podera ter permissao Admin/Owner equivalente.
+- O sistema devera funcionar em qualquer PC, desde que acesse o dominio/app correto.
+- Os dados nao devem depender da maquina local.
+- Leads, clientes, negocios, logs, tarefas e demais registros devem morar em banco cloud centralizado.
+- Alteracoes feitas por um usuario devem aparecer para o outro em tempo real ou quase tempo real.
+
+
+## 18.1. Observacao Sobre Google One e Google Cloud
+
+O proprietario informou que ja paga mensalmente o Google One e deseja usar "o cloud do Google".
+
+Ponto tecnico importante para validacao externa:
+
+- Google One e um plano de armazenamento/servicos pessoais do Google.
+- Google Cloud Platform (GCP) e a plataforma de infraestrutura para hospedar aplicacoes, bancos, APIs, Cloud Run, Cloud SQL, Firestore etc.
+- O site atual ja esta preparado para Google Cloud Run.
+- Para banco de dados centralizado e app multiusuario, provavelmente sera necessario usar recursos do Google Cloud Platform, nao apenas Google One.
+- Google One pode ajudar com armazenamento pessoal/Drive, mas nao substitui banco de dados transacional para CRM.
+
+Possiveis caminhos dentro do ecossistema Google:
+
+1. Cloud Run + Cloud SQL PostgreSQL
+   - Mais adequado para CRM relacional.
+   - Bom para leads, contatos, empresas, negocios, permissoes e relatorios.
+   - Exige configurar instancia Cloud SQL e variaveis/secrets.
+
+2. Cloud Run + Firestore
+   - Bom para sincronizacao em tempo real e dados documentais.
+   - Pode ser mais simples para realtime, mas exige modelagem cuidadosa para CRM.
+
+3. Supabase/Postgres hospedado fora do Google
+   - Ja existe indicio de Supabase no projeto atual.
+   - Mais simples para autenticao, banco e realtime.
+   - Porem nao seria "Google Cloud puro".
+
+4. Google Firebase
+   - Inclui Auth, Firestore e realtime.
+   - Pode ser uma alternativa natural se prioridade for login, realtime e multiusuario.
+   - Precisa avaliar compatibilidade com o app atual e custo/controle.
+
+Recomendacao para o GPT externo avaliar:
+
+- Se a prioridade for usar Google Cloud: Cloud Run + Cloud SQL PostgreSQL + possivelmente Pub/Sub/WebSockets/SSE para realtime.
+- Se a prioridade for velocidade de MVP: Supabase Auth + Supabase Postgres + Realtime pode ser mais rapido.
+- Se a prioridade for realtime simples no ecossistema Google: Firebase Auth + Firestore.
+
+
+## 18.2. Autenticacao e Controle de Acesso - RBAC
+
+Requisito solicitado:
+
+- Criar tabela/colecao de usuarios vinculada a organizacao principal.
+- Implementar login e senha com JWT para novo usuario/socio.
+- Garantir que o socio possa ter o mesmo nivel de permissao Admin/Owner do primeiro usuario.
+
+Modelo conceitual sugerido:
+
+- organizations
+  - id
+  - name
+  - slug
+  - primary_domain
+  - created_at
+  - updated_at
+
+- users
+  - id
+  - organization_id
+  - name
+  - email
+  - password_hash
+  - status
+  - created_at
+  - updated_at
+
+- roles
+  - id
+  - key
+  - name
+  - description
+
+- user_roles
+  - user_id
+  - organization_id
+  - role_id
+
+Roles iniciais:
+
+- Owner
+  Controle total da organizacao, usuarios, configuracoes, CRM e site.
+
+- Admin
+  Controle administrativo equivalente ou quase equivalente ao Owner, conforme decisao do proprietario.
+
+- Manager
+  Gerencia CRM, leads, tarefas e projetos, mas nao configuracoes criticas.
+
+- Member
+  Acesso operacional limitado.
+
+- Viewer
+  Apenas leitura.
+
+Permissoes iniciais sugeridas:
+
+- manage_users
+- manage_organization
+- manage_site_content
+- manage_leads
+- manage_contacts
+- manage_companies
+- manage_deals
+- manage_tasks
+- view_reports
+- manage_integrations
+- view_activity_logs
+
+Observacao:
+Apesar do pedido mencionar login e senha com JWT, para seguranca pode ser melhor avaliar:
+
+- NextAuth/Auth.js com credentials e JWT.
+- Firebase Auth.
+- Supabase Auth.
+- Google Workspace OAuth.
+
+Se senha propria for usada, exigir:
+
+- hash seguro com bcrypt/argon2.
+- JWT assinado por segredo em ambiente seguro.
+- refresh/expiration strategy.
+- cookies httpOnly quando possivel.
+- protecao de rotas server-side.
+
+
+## 18.3. Vinculacao de Dominio
+
+Requisito solicitado:
+
+- Configurar verificacao para que acesso via dominio personalizado da empresa herde configuracoes da base Cloud centralizada.
+- O funcionamento nao deve depender de qual PC local esta executando o app cliente.
+
+Interpretacao tecnica:
+
+- O dominio da empresa, por exemplo https://morenoadvisory.com ou app.morenoadvisory.com, deve apontar para a aplicacao hospedada na nuvem.
+- O app nao deve depender de banco local.
+- O dominio deve identificar a organizacao/tenant principal.
+- Todos os usuarios autenticados sob esse dominio acessam a mesma organizacao e mesma base central.
+
+Possivel desenho:
+
+- morenoadvisory.com
+  Site publico.
+
+- app.morenoadvisory.com
+  App interno/CRM.
+
+- admin.morenoadvisory.com
+  Opcional: painel administrativo/CMS.
+
+- api.morenoadvisory.com
+  Opcional: API backend separada, se arquitetura exigir.
+
+Tabela/colecao de configuracao:
+
+- organization_domains
+  - id
+  - organization_id
+  - domain
+  - verified_at
+  - status
+  - verification_token
+
+Verificacao de dominio:
+
+- Criar token de verificacao.
+- Solicitar registro DNS TXT no dominio.
+- Backend verifica DNS TXT.
+- Quando verificado, dominio fica vinculado a organizacao.
+
+Para MVP de uma unica empresa:
+
+- A verificacao de dominio pode ser simplificada, ja que a Moreno Advisory sera a unica organizacao inicial.
+- Mesmo assim, convem modelar organization_id desde o inicio para nao travar expansao futura.
+
+
+## 18.4. Conexao Cloud Centralizada
+
+Requisito solicitado:
+
+- Isolar qualquer persistencia local existente.
+- Mover/apontar todas as requisicoes de leitura e escrita para banco de dados em nuvem.
+- Dados afetados: clientes, negocios, logs de atividades e outros registros operacionais.
+
+Acao necessaria:
+
+- Auditar crm/ e moreno-advisory-app/ para descobrir se usam localStorage, arquivos locais, mock data ou armazenamento local.
+- Criar camada unica de acesso a dados.
+- Proibir escrita direta em localStorage para dados importantes.
+- Manter localStorage apenas para preferencias nao criticas de interface, se necessario.
+
+Entidades que devem ir para cloud:
+
+- usuarios
+- organizacoes
+- permissoes
+- leads
+- contatos
+- empresas
+- oportunidades/negocios
+- etapas de pipeline
+- tarefas
+- projetos
+- notas
+- logs de atividade
+- mensagens de contato do site
+- inscritos na newsletter
+- conteudo do site
+- posts de blog
+- configuracoes da empresa
+
+Regra:
+Tudo que precisa ser compartilhado entre usuarios ou maquinas deve estar na cloud.
+
+
+## 18.5. Sincronizacao em Tempo Real
+
+Requisito solicitado:
+
+- Alteracoes feitas pelo usuario no PC A devem refletir instantaneamente no PC B do socio.
+
+Possiveis implementacoes:
+
+1. Supabase Realtime
+   - Escuta alteracoes em tabelas Postgres.
+   - Bom se Supabase for adotado.
+
+2. Firestore realtime listeners
+   - Natural se Firebase/Firestore for adotado.
+
+3. WebSockets proprios
+   - Possivel com backend dedicado.
+   - Em Cloud Run, requer cuidado com conexoes longas e escala.
+
+4. Server-Sent Events
+   - Mais simples que WebSockets para eventos unidirecionais.
+
+5. Polling curto
+   - Mais facil, mas menos elegante.
+   - Pode servir como fallback.
+
+Recomendacao:
+
+- Para MVP, usar realtime nativo da plataforma escolhida.
+- Se Cloud SQL/Postgres puro for usado, avaliar WebSockets/SSE ou polling.
+- Para CRM, realtime deve priorizar:
+  - leads
+  - negocios/pipeline
+  - tarefas
+  - notas
+  - logs de atividade
+
+
+## 18.6. Rotas de API Necessarias
+
+Rotas sugeridas para o app interno:
+
+- POST /api/auth/login
+- POST /api/auth/logout
+- GET /api/auth/me
+- POST /api/auth/invite
+- POST /api/auth/accept-invite
+
+- GET /api/users
+- POST /api/users
+- PATCH /api/users/:id
+- DELETE ou desativacao /api/users/:id
+
+- GET /api/organization
+- PATCH /api/organization
+- GET /api/organization/domains
+- POST /api/organization/domains
+- POST /api/organization/domains/verify
+
+- GET /api/leads
+- POST /api/leads
+- PATCH /api/leads/:id
+
+- GET /api/contacts
+- POST /api/contacts
+- PATCH /api/contacts/:id
+
+- GET /api/companies
+- POST /api/companies
+- PATCH /api/companies/:id
+
+- GET /api/deals
+- POST /api/deals
+- PATCH /api/deals/:id
+
+- GET /api/tasks
+- POST /api/tasks
+- PATCH /api/tasks/:id
+
+- GET /api/activity
+- POST /api/activity
+
+- GET /api/site-content
+- PATCH /api/site-content
+
+Observacao:
+Os nomes exatos das rotas devem seguir a arquitetura final escolhida e a stack real reaproveitada.
+
+
+## 18.7. Como Isso Deve Funcionar na Pratica
+
+Cenario desejado:
+
+1. O site publico recebe um lead pelo formulario.
+
+2. A API do site salva esse lead na base cloud centralizada.
+
+3. O proprietario entra no app interno em app.morenoadvisory.com.
+
+4. O socio entra no mesmo app pelo PC dele.
+
+5. Ambos autenticam com usuarios diferentes.
+
+6. Ambos pertencem a organizacao Moreno Advisory.
+
+7. Ambos tem papel Admin/Owner, se assim definido.
+
+8. Quando o proprietario altera um lead, cria uma tarefa ou move um negocio no pipeline, o socio ve a mudanca em tempo real.
+
+9. Quando o socio edita uma informacao autorizada do site, essa alteracao fica salva na cloud e o site publico passa a consumir o novo conteudo conforme regra de publicacao.
+
+10. Nenhum dado critico fica preso a um PC local.
+
+
+## 18.8. Cuidados de Seguranca
+
+- Nao armazenar senhas em texto puro.
+- Nao expor service role key no client.
+- Usar cookies httpOnly ou estrategia JWT segura.
+- Implementar middleware de protecao de rotas internas.
+- Validar organization_id em todas as consultas.
+- Registrar logs de atividades administrativas.
+- Permitir desativar usuario.
+- Implementar recuperacao/troca de senha futuramente.
+- Considerar 2FA para usuarios Admin/Owner.
+- Separar variaveis publicas NEXT_PUBLIC das variaveis privadas.
+- Garantir que edicao de conteudo do site tenha permissao especifica.
+
+
+## 18.9. Caminho de Implementacao Sugerido para Este Modulo
+
+Passo 1 - Auditoria do armazenamento atual
+
+- Verificar crm/.
+- Verificar moreno-advisory-app/.
+- Localizar localStorage, arquivos JSON, mocks e qualquer persistencia local.
+
+Passo 2 - Escolha da cloud database
+
+- Decidir entre Cloud SQL/Postgres, Firestore/Firebase ou Supabase.
+- Considerar que Google One nao substitui banco transacional.
+
+Passo 3 - Criar modelo multiusuario
+
+- organizations.
+- users.
+- roles.
+- user_roles.
+- permissions.
+- activity_logs.
+
+Passo 4 - Implementar autenticacao
+
+- Login.
+- Logout.
+- Sessao/JWT.
+- Protecao de rotas.
+- Primeiro usuario Owner.
+- Convite/criacao do socio como Admin/Owner.
+
+Passo 5 - Migrar dados operacionais para cloud
+
+- leads.
+- contacts.
+- companies.
+- deals.
+- tasks.
+- projects.
+- newsletter.
+- contact_messages.
+
+Passo 6 - Implementar realtime
+
+- Escolher mecanismo conforme banco.
+- Atualizar telas do CRM para escutar mudancas.
+
+Passo 7 - Vincular dominio
+
+- Definir app.morenoadvisory.com ou equivalente.
+- Configurar DNS.
+- Configurar Cloud Run/domain mapping.
+- Persistir dominio em organization_domains.
+
+Passo 8 - Conectar CMS/site
+
+- Criar site_content.
+- Permitir edicao controlada pelo app.
+- Site publico consome conteudo publicado.
+
+Passo 9 - Validar com dois usuarios reais
+
+- PC A: proprietario.
+- PC B: socio.
+- Testar criacao, edicao e sincronizacao.
+
+
+# 19. Arquivos que Nao Devem Ser Alterados Sem Confirmacao
+
+- .env.local
+- .env.example
+- deploy.sh
+- setup-gcp-secrets.sh
+- Dockerfile
+- DEPLOY.md
+- src/app/api/contact/route.ts
+- src/app/api/newsletter/route.ts
+- src/lib/email.ts
+- src/lib/site-intake.ts
+- src/lib/constants.ts
+- src/lib/constants.pt.ts
+- src/i18n/messages/en.json
+- src/i18n/messages/pt.json
+- src/app/[locale]/layout.tsx
+- src/middleware.ts
+- public/assets/logo-main.png
+- public/assets/logo-variations.png
+- public/assets/perfil.png
+- crm/
+- moreno-advisory-app/
+
+
+# 20. Perguntas para o GPT Externo Conferir Antes do Comando Final
+
+1. A melhor arquitetura para este caso deve ser monorepo com apps separados ou um unico Next.js app modular?
+
+2. O que deve ser reaproveitado de crm/ e moreno-advisory-app/?
+
+3. Qual deve ser o MVP inicial para evitar tentar construir um HubSpot inteiro de uma vez?
+
+4. O banco central deve ser Supabase/Postgres?
+
+5. A autenticacao deve usar Google Workspace, email/senha, magic link ou outro metodo?
+
+6. O CMS do site deve editar conteudo salvo no banco ou continuar usando arquivos versionados no codigo?
+
+7. Qual parte deve vir primeiro: repaginacao visual do site ou fundacao do app interno/CRM?
+
+8. Quais funcionalidades sao indispensaveis na primeira versao?
+
+9. Para o modulo multiusuario, devemos usar Google Cloud SQL/Postgres, Firebase/Firestore ou Supabase?
+
+10. Como aproveitar o pagamento atual do Google One, sabendo que Google One nao e o mesmo que Google Cloud Platform?
+
+11. O dominio ideal para o app interno deve ser app.morenoadvisory.com, admin.morenoadvisory.com ou uma rota dentro do dominio principal?
+
+12. A sincronizacao em tempo real deve ser obrigatoria desde o MVP ou pode comecar com refresh/polling e evoluir?
+
+13. O socio deve ser Owner completo ou Admin com algumas restricoes?
+
+14. O login deve ser email/senha com JWT, Google Workspace OAuth ou uma solucao gerenciada como Firebase/Supabase Auth?
+
+
+# 21. Conclusao
+
+O projeto atual possui um site publico funcional em Next.js, com boas bases de branding, conteudo bilingue, formularios, email, WhatsApp, SEO parcial e deploy preparado para Google Cloud Run.
+
+Porem, o CRM e o APP existentes no workspace nao devem ser tratados como prontos. Eles precisam ser auditados e possivelmente reconstruidos ou consolidados.
+
+A nova direcao solicitada e transformar a Moreno Advisory em uma plataforma integrada: site publico + CRM + app interno + CMS/admin + banco central + multiusuarios administradores + sincronizacao em tempo real + automacoes futuras.
+
+A repaginacao pode incluir essa visao, mas deve ser planejada por fases para evitar quebrar o site atual e para nao misturar redesign visual com construcao de um software interno completo sem arquitetura clara.
