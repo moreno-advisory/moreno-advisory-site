@@ -1,7 +1,16 @@
 import createMiddleware from "next-intl/middleware";
+import { NextRequest, NextResponse } from "next/server";
 import { routing } from "./i18n/routing";
 
-export default createMiddleware(routing);
+const handleI18n = createMiddleware(routing);
+
+export default function middleware(request: NextRequest) {
+  if (request.nextUrl.pathname === "/privacy-policy") {
+    return NextResponse.rewrite(new URL("/en/privacy-policy", request.url));
+  }
+
+  return handleI18n(request);
+}
 
 export const config = {
   matcher: [
