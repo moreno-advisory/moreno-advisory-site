@@ -38,6 +38,7 @@
   "exclude": [
     "node_modules",
     "moreno-advisory-app",
-    "crm"
+    "crm",
+    "moreno-advisory-mcp"
   ]
 }
